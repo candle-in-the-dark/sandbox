@@ -13,18 +13,7 @@ var map = {
         1, 0, 0, 0, 0, 1, 1, 1, 0, 1,
         1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-      ], [
-        1, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-        1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
-        1, 1, 1, 1, 0, 0, 0, 1, 0, 1,
-        1, 0, 1, 0, 0, 1, 1, 1, 0, 1,
-        1, 0, 1, 0, 1, 1, 0, 0, 0, 1,
-        1, 0, 1, 0, 0, 1, 0, 1, 1, 1,
-        1, 0, 1, 1, 0, 1, 0, 0, 0, 0,
-        1, 0, 0, 0, 0, 1, 1, 1, 0, 1,
-        1, 0, 1, 0, 0, 0, 0, 1, 0, 1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1
-    ]],
+      ]],
     getTile: function (layer, col, row) {
         return this.layers[layer][row * map.cols + col];
     },
@@ -126,12 +115,15 @@ Hero.prototype.move = function (delta, dirx, diry) {
 
 Hero.prototype._collide = function (dirx, diry) {
     var row, col;
+    const wiggleRoom = 16;
+    const collideHeight = this.height - 16;
+    const collideWidth = this.width - 16
     // -1 in right and bottom is because image ranges from 0..63
     // and not up to 64
-    var left = this.x - (this.width - 16) / 2;
-    var right = this.x + (this.width - 16) / 2 - 1;
-    var top = this.y - (this.height - 16) / 2;
-    var bottom = this.y + (this.height - 16) / 2 - 1;
+    var left = this.x - collideWidth / 2;
+    var right = this.x + collideWidth / 2 - 1;
+    var top = this.y - collideHeight / 2;
+    var bottom = this.y + collideHeight / 2 - 1;
 
     // check for collisions on sprite sides
     var collision =
@@ -143,19 +135,19 @@ Hero.prototype._collide = function (dirx, diry) {
 
     if (diry > 0) {
         row = this.map.getRow(bottom);
-        this.y = -this.height / 2 + this.map.getY(row);
+        this.y = -collideHeight / 2 + this.map.getY(row);
     }
     else if (diry < 0) {
         row = this.map.getRow(top);
-        this.y = this.height / 2 + this.map.getY(row + 1);
+        this.y = collideHeight / 2 + this.map.getY(row + 1);
     }
     else if (dirx > 0) {
         col = this.map.getCol(right);
-        this.x = -this.width / 2 + this.map.getX(col);
+        this.x = -collideWidth / 2 + this.map.getX(col);
     }
     else if (dirx < 0) {
         col = this.map.getCol(left);
-        this.x = this.width / 2 + this.map.getX(col + 1);
+        this.x = collideWidth / 2 + this.map.getX(col + 1);
     }
 };
 
