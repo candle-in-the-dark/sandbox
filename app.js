@@ -1,19 +1,3 @@
-// var mazeGen = require('@sbj42/maze-generator');
-//
-// // generate a 20x20 maze
-// var maze = mazeGen.generate(20, 20, {
-//     generator: '@sbj42/maze-generator-backtrack'
-// });
-//
-// // get the north-east corner cell of the maze
-// var cell = maze.cell(0, 0);
-//
-// for(let x = 0; x < 20; x++){
-//   for(let y = 0; y < 20; y++){
-//     console.log(maze.cell(x,y));
-//   }
-// }
-
 function newMaze(x, y) {
 
     // Establish variables and starting grid
@@ -71,7 +55,4 @@ function newMaze(x, y) {
     }
     return cells;
 }
-
-
-
-console.log(newMaze(20,20))
+console.log(newMaze(5, 5))
