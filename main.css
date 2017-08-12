@@ -1,15 +1,18 @@
 .mazeBlock {
-  height: 20px;
-  width: 20px;
+  height: 30px;
+  width: 30px;
   border: 1px solid grey;
   margin: -2px;
   background-color: white;
 }
 
+.light {
+  background-color: yellow
+}
+
 .wall {
   background-color: black
 }
-
 
 main {
   display: flex;
@@ -28,49 +31,3 @@ main {
   display: flex;
   margin: 5em auto;
 }
-
-/*#color_picker {
-  height: 0px;
-  width: 0px;
-  border: 2px solid black;
-  display: inline-block;
-  margin: 3px;
-  border-radius: 50%;
-  background-color: grey;
-  padding: 20px;
-}*/
-
-/*
-.color_dot {
-  height: 20px;
-  width: 20px;
-  border: 2px solid black;
-  display: inline-block;
-  margin: 3px;
-  border-radius: 50%;
-}*/
-/*
-#red{
-  background-color: red;
-}
-#green {
-  background-color: green;
-}
-#blue {
-  background-color: blue;
-}
-#yellow {
-  background-color: yellow;
-}
-button {
-  height: 30px;
-  border-radius: 15% 15% 15% 15%;
-  margin: 3px;
-  display: flex;
-}
-
-footer {
-  display: flex;
-  align-self: flex-end;
-  justify-content: center;
-}*/
