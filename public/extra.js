@@ -25,7 +25,7 @@ var map = {
         // loop through all layers and return TRUE if any tile is solid
         return this.layers.reduce(function (res, layer, index) {
             var tile = this.getTile(index, col, row);
-            var isSolid = tile === 1
+            var isSolid = tile === 1;
             return res || isSolid;
         }.bind(this), false);
     },
@@ -117,7 +117,7 @@ Hero.prototype._collide = function (dirx, diry) {
     var row, col;
     const wiggleRoom = 16;
     const collideHeight = this.height - 16;
-    const collideWidth = this.width - 16
+    const collideWidth = this.width - 16;
     // -1 in right and bottom is because image ranges from 0..63
     // and not up to 64
     var left = this.x - collideWidth / 2;
@@ -153,7 +153,7 @@ Hero.prototype._collide = function (dirx, diry) {
 
 Game.load = function () {
     return [
-        Loader.loadImage('tiles', './assets/tiles.png'),
+        Loader.loadImage('tiles', './assets/torchbrick.png'),
         Loader.loadImage('hero', './assets/character.png')
     ];
 };
@@ -210,28 +210,28 @@ Game._drawLayer = function (layer) {
         }
     }
 };
-
-Game._drawGrid = function () {
-        var width = map.cols * map.tsize;
-    var height = map.rows * map.tsize;
-    var x, y;
-    for (var r = 0; r < map.rows; r++) {
-        x = - this.camera.x;
-        y = r * map.tsize - this.camera.y;
-        this.ctx.beginPath();
-        this.ctx.moveTo(x, y);
-        this.ctx.lineTo(width, y);
-        this.ctx.stroke();
-    }
-    for (var c = 0; c < map.cols; c++) {
-        x = c * map.tsize - this.camera.x;
-        y = - this.camera.y;
-        this.ctx.beginPath();
-        this.ctx.moveTo(x, y);
-        this.ctx.lineTo(x, height);
-        this.ctx.stroke();
-    }
-};
+//
+// Game._drawGrid = function () {
+//     var width = map.cols * map.tsize;
+//     var height = map.rows * map.tsize;
+//     var x, y;
+//     for (var r = 0; r < map.rows; r++) {
+//         x = - this.camera.x;
+//         y = r * map.tsize - this.camera.y;
+//         this.ctx.beginPath();
+//         this.ctx.moveTo(x, y);
+//         this.ctx.lineTo(width, y);
+//         this.ctx.stroke();
+//     }
+//     for (var c = 0; c < map.cols; c++) {
+//         x = c * map.tsize - this.camera.x;
+//         y = - this.camera.y;
+//         this.ctx.beginPath();
+//         this.ctx.moveTo(x, y);
+//         this.ctx.lineTo(x, height);
+//         this.ctx.stroke();
+//     }
+// };
 
 Game.render = function () {
     // draw map background layer
