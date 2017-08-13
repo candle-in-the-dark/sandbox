@@ -61,8 +61,8 @@ Camera.prototype.follow = function (sprite) {
 Camera.prototype.update = function () {
     // assume followed sprite should be placed at the center of the screen
     // whenever possible
-    this.following.screenX = this.width / 2;
-    this.following.screenY = this.height / 2;
+    // this.following.screenX = this.width / 2;
+    // this.following.screenY = this.height / 2;
 
     // make the camera follow the sprite
     this.x = this.following.x - this.width / 2;
@@ -164,7 +164,7 @@ Game.init = function () {
     this.tileAtlas = Loader.getImage('tiles');
 
     this.hero = new Hero(map, 96, 32);
-    this.camera = new Camera(map, 256, 256);
+    this.camera = new Camera(map, 192, 192);
     this.camera.follow(this.hero);
 };
 
@@ -182,12 +182,12 @@ Game.update = function (delta) {
 };
 
 Game._drawLayer = function (layer) {
-    var startCol = Math.floor(this.camera.x / map.tsize);
-    var endCol = startCol + (this.camera.width / map.tsize);
-    var startRow = Math.floor(this.camera.y / map.tsize);
-    var endRow = startRow + (this.camera.height / map.tsize);
-    var offsetX = -this.camera.x + startCol * map.tsize;
-    var offsetY = -this.camera.y + startRow * map.tsize;
+    var startCol = 0;
+    var endCol = map.cols;
+    var startRow = 0;
+    var endRow = map.rows;
+    var offsetX = 0; // -this.camera.x + startCol * map.tsize;
+    var offsetY = 0; // -this.camera.y + startRow * map.tsize;
 
     for (var c = startCol; c <= endCol; c++) {
         for (var r = startRow; r <= endRow; r++) {
