@@ -1,80 +1,139 @@
 // map.layers = Json return
+let array = [[
+    3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+    3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
+    3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
+    3, 1, 3, 1, 1, 3, 3, 3, 1, 3, 1, 3,
+    3, 1, 3, 1, 3, 3, 1, 1, 1, 3, 1, 3,
+    3, 1, 3, 1, 1, 3, 1, 3, 3, 3, 1, 3,
+    3, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 3,
+    3, 1, 1, 1, 1, 3, 3, 3, 1, 3, 1, 3,
+    3, 1, 3, 1, 1, 1, 1, 3, 1, 3, 1, 3,
+    3, 1, 3, 3, 3, 1, 3, 3, 3, 3, 1, 3,
+    3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3,
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+], [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+], [
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+]]
 
-var map = {
-    cols: 12,
-    rows: 12,
-    tsize: 64,
-    layers: [[
-        3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-        3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
-        3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
-        3, 1, 3, 1, 1, 3, 3, 3, 1, 3, 1, 3,
-        3, 1, 3, 1, 3, 3, 1, 1, 1, 3, 1, 3,
-        3, 1, 3, 1, 1, 3, 1, 3, 3, 3, 1, 3,
-        3, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 3,
-        3, 1, 1, 1, 1, 3, 3, 3, 1, 3, 1, 3,
-        3, 1, 3, 1, 1, 1, 1, 3, 1, 3, 1, 3,
-        3, 1, 3, 3, 3, 1, 3, 3, 3, 3, 1, 3,
-        3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3,
-        3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
-    ], [
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ], [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ]],
-    getTile: function (layer, col, row) {
-        return this.layers[layer][row * map.cols + col];
-    },
-    isSolidTileAtXY: function (x, y) {
-        var col = Math.floor(x / this.tsize);
-        var row = Math.floor(y / this.tsize);
-
-        // tiles 3 and 5 are solid -- the rest are walkable
-        // loop through all layers and return TRUE if any tile is solid
-        return this.layers.reduce(function (res, layer, index) {
-            var tile = this.getTile(index, col, row);
-            var isSolid = tile === 3 || tile === 5;
-            return res || isSolid;
-        }.bind(this), false);
-    },
-    isAtEnd: function (x, y) {
-
-    },
-    getCol: function (x) {
-        return Math.floor(x / this.tsize);
-    },
-    getRow: function (y) {
-        return Math.floor(y / this.tsize);
-    },
-    getX: function (col) {
-        return col * this.tsize;
-    },
-    getY: function (row) {
-        return row * this.tsize;
-    }
+const Map = function(array){
+      this.cols = 12;
+      this.rows = 12;
+      this.tsize = 12;
+      this.layers = array;
+}
+Map.prototype.getTile = function (layer, col, row) {
+    return this.layers[layer][row * map.cols + col];
 };
+Map.prototype.isSolidTileAtXY = function (x, y) {
+    var col = Math.floor(x / this.tsize);
+    var row = Math.floor(y / this.tsize);
+
+    // tiles 3 and 5 are solid -- the rest are walkable
+    // loop through all layers and return TRUE if any tile is solid
+    return this.layers.reduce(function (res, layer, index) {
+        var tile = this.getTile(index, col, row);
+        var isSolid = tile === 3 || tile === 5;
+        return res || isSolid;
+    }.bind(this), false);
+};
+Map.prototype.isAtEnd = function (x, y) {
+};
+Map.prototype.getCol = function (x) {
+    return Math.floor(x / this.tsize);
+};
+Map.prototype.getRow = function (y) {
+    return Math.floor(y / this.tsize);
+};
+Map.prototype.getX = function (col) {
+    return col * this.tsize;
+};
+Map.prototype.getY = function (row) {
+    return row * this.tsize;
+};
+
+// var map = {
+//     cols: 12,
+//     rows: 12,
+//     tsize: 64,
+//     layers: [[
+//         3, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+//         3, 1, 1, 1, 1, 3, 1, 1, 1, 3, 1, 3,
+//         3, 3, 3, 3, 1, 1, 1, 3, 1, 3, 1, 1,
+//         3, 1, 3, 1, 1, 3, 3, 3, 1, 3, 1, 3,
+//         3, 1, 3, 1, 3, 3, 1, 1, 1, 3, 1, 3,
+//         3, 1, 3, 1, 1, 3, 1, 3, 3, 3, 1, 3,
+//         3, 1, 3, 3, 1, 3, 1, 1, 1, 1, 1, 3,
+//         3, 1, 1, 1, 1, 3, 3, 3, 1, 3, 1, 3,
+//         3, 1, 3, 1, 1, 1, 1, 3, 1, 3, 1, 3,
+//         3, 1, 3, 3, 3, 1, 3, 3, 3, 3, 1, 3,
+//         3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3,
+//         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+//     ], [
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+//     ], [
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+//     ]],
+//
+//     getCol: function (x) {
+//         return Math.floor(x / this.tsize);
+//     },
+//     getRow: function (y) {
+//         return Math.floor(y / this.tsize);
+//     },
+//     getX: function (col) {
+//         return col * this.tsize;
+//     },
+//     getY: function (row) {
+//         return row * this.tsize;
+//     }
+// };
 
 function Camera(map, width, height, radius) {
     this.x = 0;
@@ -116,7 +175,7 @@ Camera.prototype.update = function () {
     }
 };
 
-function Hero(map, x, y) {
+function Hero(Map, x, y) {
     this.map = map;
     this.x = x;
     this.y = y;
@@ -132,7 +191,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
     // move hero
     this.x += dirx * Hero.SPEED * delta;
     this.y += diry * Hero.SPEED * delta;
-
+    
     // check if we walked into a non-walkable tile
     this._collide(dirx, diry);
 
@@ -192,10 +251,10 @@ Game.init = function () {
     Keyboard.listenForEvents(
         [Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
     this.tileAtlas = Loader.getImage('tiles');
-
+    // const map = new Map()
     this.hero = new Hero(map, 96, 16);
     this.camera = new Camera(map, 192, 192, 128);
-    this.camera.follow(this.hero);
+    // this.camera.follow(this.hero);
 };
 
 Game.update = function (delta) {
