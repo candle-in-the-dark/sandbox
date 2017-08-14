@@ -1,6 +1,12 @@
 canvas {
     background: #000;
 }
+head, body {
+  background: #000;
+}
+.white {
+  color: white;
+}
 
 .main-wrapper {
     width: 768px;
