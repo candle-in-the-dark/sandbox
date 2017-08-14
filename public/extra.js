@@ -43,7 +43,7 @@ var map = {
     }
 };
 
-function Camera(map, width, height) {
+function Camera(map, width, height, radius) {
     this.x = 0;
     this.y = 0;
     this.width = width;
@@ -163,8 +163,8 @@ Game.init = function () {
         [Keyboard.LEFT, Keyboard.RIGHT, Keyboard.UP, Keyboard.DOWN]);
     this.tileAtlas = Loader.getImage('tiles');
 
-    this.hero = new Hero(map, 96, 32);
-    this.camera = new Camera(map, 192, 192);
+    this.hero = new Hero(map, 160, 160);
+    this.camera = new Camera(map, 192, 192, 128);
     this.camera.follow(this.hero);
 };
 
@@ -186,15 +186,23 @@ Game._drawLayer = function (layer) {
     var endCol = map.cols;
     var startRow = 0;
     var endRow = map.rows;
-    var offsetX = 0; // -this.camera.x + startCol * map.tsize;
-    var offsetY = 0; // -this.camera.y + startRow * map.tsize;
+    var offsetX = 0;//-this.camera.x + startCol * map.tsize;
+    var offsetY = 0;//-this.camera.y + startRow * map.tsize;
 
     for (var c = startCol; c <= endCol; c++) {
         for (var r = startRow; r <= endRow; r++) {
             var tile = map.getTile(layer, c, r);
             var x = (c - startCol) * map.tsize + offsetX;
             var y = (r - startRow) * map.tsize + offsetY;
-            if (tile !== 0) { // 0 => empty tile
+
+            var middleX = c * map.tsize + (map.tsize / 2 )
+            var middleY = r * map.tsize + (map.tsize / 2 )
+
+            var a2 = Math.pow(this.hero.x - middleX, 2)
+            var b2 = Math.pow(this.hero.y - middleY, 2)
+
+
+            if (tile !== 0 && Math.sqrt(a2+b2) < this.camera.radius) { // 0 => empty tile
                 this.ctx.drawImage(
                     this.tileAtlas, // image
                     (tile - 1) * map.tsize, // source x
@@ -210,28 +218,7 @@ Game._drawLayer = function (layer) {
         }
     }
 };
-//
-// Game._drawGrid = function () {
-//     var width = map.cols * map.tsize;
-//     var height = map.rows * map.tsize;
-//     var x, y;
-//     for (var r = 0; r < map.rows; r++) {
-//         x = - this.camera.x;
-//         y = r * map.tsize - this.camera.y;
-//         this.ctx.beginPath();
-//         this.ctx.moveTo(x, y);
-//         this.ctx.lineTo(width, y);
-//         this.ctx.stroke();
-//     }
-//     for (var c = 0; c < map.cols; c++) {
-//         x = c * map.tsize - this.camera.x;
-//         y = - this.camera.y;
-//         this.ctx.beginPath();
-//         this.ctx.moveTo(x, y);
-//         this.ctx.lineTo(x, height);
-//         this.ctx.stroke();
-//     }
-// };
+
 
 Game.render = function () {
     // draw map background layer
@@ -240,11 +227,7 @@ Game.render = function () {
     // draw main character
     this.ctx.drawImage(
         this.hero.image,
-        this.hero.screenX - this.hero.width / 2,
-        this.hero.screenY - this.hero.height / 2);
+        this.hero.x - this.hero.width / 2,
+        this.hero.y - this.hero.height / 2);
 
-    // draw map top layer
-    // this._drawLayer(1);
-
-    this._drawGrid();
 };
