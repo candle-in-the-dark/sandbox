@@ -20,7 +20,7 @@ var map = {
     ], [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -31,18 +31,18 @@ var map = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ], [
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ]],
     getTile: function (layer, col, row) {
         return this.layers[layer][row * map.cols + col];
@@ -60,7 +60,14 @@ var map = {
         }.bind(this), false);
     },
     isAtEnd: function (x, y) {
-
+        let col = Math.floor(x / this.tsize);
+        let row = Math.floor(y / this.tsize);
+        // tile 1 is the end, other tile values can be added later for other tasks/easter eggs
+        return this.layers.reduce(function(acc, layer, index) {
+          let tile = this.getTile(index, col, row);
+          let isEnd = tile === 6;
+          return acc || isEnd;
+        }.bind(this), false);
     },
     getCol: function (x) {
         return Math.floor(x / this.tsize);
@@ -122,6 +129,7 @@ function Hero(map, x, y) {
     this.y = y;
     this.width = map.tsize;
     this.height = map.tsize;
+    this.complete = false;
 
     this.image = Loader.getImage('hero');
 }
@@ -141,7 +149,15 @@ Hero.prototype.move = function (delta, dirx, diry) {
     var maxY = this.map.rows * this.map.tsize;
     this.x = Math.max(0, Math.min(this.x, maxX));
     this.y = Math.max(0, Math.min(this.y, maxY));
-    this.map.isAtEnd(this.x, this.y);
+    var end = this.map.isAtEnd(this.x, this.y)
+    if(end && !this.complete){
+      window.location.href = 'win.html';
+      console.log("DONE!");
+      this.complete = true;
+
+    }
+
+
 };
 
 Hero.prototype._collide = function (dirx, diry) {

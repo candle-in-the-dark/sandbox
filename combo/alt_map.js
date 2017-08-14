@@ -191,7 +191,7 @@ Hero.prototype.move = function (delta, dirx, diry) {
     // move hero
     this.x += dirx * Hero.SPEED * delta;
     this.y += diry * Hero.SPEED * delta;
-    
+
     // check if we walked into a non-walkable tile
     this._collide(dirx, diry);
 
@@ -254,7 +254,7 @@ Game.init = function () {
     // const map = new Map()
     this.hero = new Hero(map, 96, 16);
     this.camera = new Camera(map, 192, 192, 128);
-    // this.camera.follow(this.hero);
+
 };
 
 Game.update = function (delta) {
